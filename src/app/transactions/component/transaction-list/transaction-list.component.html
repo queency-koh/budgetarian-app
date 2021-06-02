@@ -43,7 +43,8 @@
           </div>
         </div>
         <div class="flex items-center justify-end w-full h-full font-semibold">
-          {{ transaction.amount | currency: "₱" }}
+          <span *ngIf="transaction.type === 'expense'">-</span
+          >{{ transaction.amount | currency: "₱" }}
         </div>
       </div>
     </ng-container>
