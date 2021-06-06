@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { BudgetDashboardModule } from './budget-dashboard/budget-dashboard.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TransactionsModule } from './transactions/transactions.module';
     BrowserModule,
     AppRoutingModule,
     BudgetDashboardModule,
-    TransactionsModule
+    TransactionsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
