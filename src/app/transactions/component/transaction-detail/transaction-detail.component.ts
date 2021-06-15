@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs/internal/Observable';
 import { Category } from '../../shared/models/category.model';
@@ -14,41 +15,34 @@ import { TransactionService } from '../../shared/services/transaction.service';
 })
 export class TransactionDetailComponent implements OnInit {
 
-  id: number = 0;
-  type: string = "expense";
   categories$!: Observable<Category[]>;
-  transactionForm: FormGroup;
+
+  form: any
 
   constructor(private fb: FormBuilder,
+              private route: ActivatedRoute,
               private categoryService: CategoryService,
-              private transactionService: TransactionService) {
+              private transactionService: TransactionService) {}
 
-      this.transactionForm = this.fb.group({
-        type: [this.type],
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+
+      console.log(params);
+      this.form = this.fb.group({
+        id: [Guid.raw()],
+        type: [params.get('type')],
         date: [new Date()],
         title: [''],
         category: [''],
         amount: ['0.00'],
         notes: ['']
       });
-    }
+    })
 
-  ngOnInit(): void {
     this.categories$ = this.categoryService.get();
   }
 
-  onSubmit() {
-
-    const transaction: Transaction = {
-      id: Guid.raw(),
-      type: this.type,
-      date: new Date(this.transactionForm.value.date).toLocaleDateString('en-US'),
-      title: this.transactionForm.value.title,
-      category: this.transactionForm.value.category,
-      amount: this.transactionForm.value.amount,
-      notes: this.transactionForm.value.notes,
-    };
-
-    this.transactionService.post(transaction).subscribe(() => this.transactionForm.reset());
+  onSave(event: Transaction) {
+    this.transactionService.post(event).subscribe();
   }
 }

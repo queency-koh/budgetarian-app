@@ -1,0 +1,199 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSave()"
+  class="flex flex-col flex-auto p-6 pt-10 sm:p-8 sm:pt-10 overflow-y-auto"
+  novalidate
+>
+  <div class="flex flex-col min-h-screen">
+    <div class="flex-1">
+      <!-- Date -->
+      <div class="m-2">
+        <label for="date" class="block text-sm font-medium text-gray-700"
+          >Date</label
+        >
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <input
+            formControlName="date"
+            type="text"
+            name="date"
+            id="date"
+            matInput
+            [matDatepicker]="picker"
+            class="
+              focus:ring-indigo-500
+              focus:border-indigo-500
+              block
+              w-full
+              pr-12
+              sm:text-sm
+              border-gray-300
+              rounded-md
+              p-2
+            "
+          />
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </div>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <div class="m-2">
+        <label for="title" class="block text-sm font-medium text-gray-700"
+          >Title</label
+        >
+        <div class="mt-1">
+          <input
+            formControlName="title"
+            type="text"
+            name="title"
+            id="title"
+            class="
+              focus:ring-indigo-500
+              focus:border-indigo-500block
+              w-full
+              sm:text-sm
+              border-gray-300
+              rounded-md
+              p-2
+            "
+          />
+        </div>
+      </div>
+
+      <!-- Category -->
+      <div class="m-2">
+        <label for="category" class="block text-sm font-medium text-gray-700">
+          Category
+        </label>
+        <div class="mt-1">
+          <select
+            formControlName="category"
+            id="category"
+            name="category"
+            autocomplete="category"
+            class="
+              focus:ring-indigo-500
+              focus:border-indigo-500block
+              w-full
+              sm:text-sm
+              border-gray-300
+              rounded-md
+              p-2
+            "
+          >
+            <option *ngFor="let category of categories">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Amount -->
+      <div class="m-2">
+        <label for="amount" class="block text-sm font-medium text-gray-700"
+          >Amount</label
+        >
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <div
+            class="
+              absolute
+              inset-y-0
+              left-0
+              items-center
+              pointer-events-none
+              p-2
+            "
+          >
+            <span class="text-gray-500 sm:text-sm"> ₱ </span>
+          </div>
+          <input
+            formControlName="amount"
+            type="text"
+            name="amount"
+            id="amount"
+            class="
+              focus:ring-indigo-500
+              focus:border-indigo-500
+              block
+              w-full
+              pl-7
+              pr-12
+              sm:text-sm
+              border-gray-300
+              rounded-md
+            "
+            placeholder="0.00"
+            aria-describedby="price-currency"
+          />
+          <div
+            class="
+              absolute
+              inset-y-0
+              right-0
+              pr-3
+              flex
+              items-center
+              pointer-events-none
+            "
+          >
+            <span class="text-gray-500 sm:text-sm" id="price-currency">
+              PHP
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="m-2">
+        <label for="notes" class="block text-sm font-medium text-gray-700"
+          >Notes</label
+        >
+        <div class="mt-1">
+          <textarea
+            formControlName="notes"
+            rows="2"
+            class="
+              focus:ring-indigo-500
+              focus:border-indigo-500block
+              w-full
+              sm:text-sm
+              border-gray-300
+              rounded-md
+              p-2
+            "
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save -->
+    <div class="m-2 mb-14">
+      <button
+        type="submit"
+        class="
+          w-full
+          py-2
+          px-4
+          border border-transparent
+          rounded-md
+          shadow-sm
+          text-sm
+          font-medium
+          text-white
+          bg-indigo-600
+          hover:bg-indigo-700
+          focus:outline-none
+          focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+        "
+      >
+        <i class="las la-save text-lg"></i>
+        Save
+      </button>
+    </div>
+  </div>
+</form>
