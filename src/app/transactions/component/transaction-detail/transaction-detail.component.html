@@ -1,0 +1,5 @@
+<app-transaction-form
+  [form]="form"
+  [categories]="categories$ | async"
+  (create)="onSave($event)"
+></app-transaction-form>
