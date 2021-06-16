@@ -7,6 +7,7 @@ import { Category } from '../../shared/models/category.model';
 import { Transaction } from '../../shared/models/transaction.model';
 import { CategoryService } from '../../shared/services/category.service';
 import { TransactionService } from '../../shared/services/transaction.service';
+import { TransactionListComponent } from '../transaction-list/transaction-list.component';
 
 @Component({
   selector: 'app-transaction-detail',
@@ -22,12 +23,14 @@ export class TransactionDetailComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private categoryService: CategoryService,
-              private transactionService: TransactionService) {}
+              private transactionService: TransactionService,
+              private transactionListComponent: TransactionListComponent) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
 
-      console.log(params);
+    this.transactionListComponent.matDrawer.open();
+
+    this.route.paramMap.subscribe(params => {
       this.form = this.fb.group({
         id: [Guid.raw()],
         type: [params.get('type')],

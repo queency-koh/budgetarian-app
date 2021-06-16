@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { TransactionsComponent } from './container/transactions/transactions.component';
 import { TransactionListComponent } from './component/transaction-list/transaction-list.component';
@@ -13,7 +14,9 @@ import { TransactionDetailComponent } from './component/transaction-detail/trans
 import { TransactionFormComponent } from './component/transaction-form/transaction-form.component';
 
 const routes: Routes = [
-  { path: 'transaction/:type', component: TransactionDetailComponent }
+  { path: '', component: TransactionListComponent },
+  { path: ':id', component: TransactionDetailComponent },
+  { path: ':type', component: TransactionDetailComponent }
 ];
 
 @NgModule({
@@ -29,7 +32,8 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSidenavModule
   ],
   exports: [
     RouterModule,
