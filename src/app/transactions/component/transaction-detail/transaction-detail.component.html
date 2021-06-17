@@ -2,4 +2,5 @@
   [form]="form"
   [categories]="categories$ | async"
   (create)="onSave($event)"
+  (cancel)="onCancel()"
 ></app-transaction-form>

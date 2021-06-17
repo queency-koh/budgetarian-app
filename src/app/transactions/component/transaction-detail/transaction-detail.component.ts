@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs/internal/Observable';
 import { Category } from '../../shared/models/category.model';
@@ -22,6 +22,7 @@ export class TransactionDetailComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
+              private router: Router,
               private categoryService: CategoryService,
               private transactionService: TransactionService,
               private transactionListComponent: TransactionListComponent) {}
@@ -47,5 +48,10 @@ export class TransactionDetailComponent implements OnInit {
 
   onSave(event: Transaction) {
     this.transactionService.post(event).subscribe();
+  }
+
+  onCancel() {
+    this.transactionListComponent.matDrawer.close();
+    this.router.navigate(['/'], {relativeTo: this.route});
   }
 }

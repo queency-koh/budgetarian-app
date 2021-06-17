@@ -20,9 +20,16 @@ export class TransactionFormComponent {
   @Output()
   create = new EventEmitter<Transaction>();
 
+  @Output()
+  cancel = new EventEmitter<Transaction>();
+
   onSave() {
     if (this.form.valid) {
       this.create.emit(this.form.value);
     }
+  }
+
+  onCancel() {
+    this.cancel.emit();
   }
 }
