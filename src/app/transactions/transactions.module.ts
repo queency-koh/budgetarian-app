@@ -14,10 +14,58 @@ import { TransactionDetailComponent } from './component/transaction-detail/trans
 import { TransactionFormComponent } from './component/transaction-form/transaction-form.component';
 
 const routes: Routes = [
-  { path: '', component: TransactionListComponent },
-  { path: ':id', component: TransactionDetailComponent },
-  { path: ':type', component: TransactionDetailComponent }
+  {
+    path: '',
+    component: TransactionsComponent,
+    children : [
+      {
+        path: '',
+        component: TransactionListComponent,
+        children: [
+          {
+            path: ':id',
+            component: TransactionDetailComponent
+          },
+          {
+            path: ':type',
+            component: TransactionDetailComponent
+          }
+        ]
+      }
+    ]
+  }
 ];
+
+// const routes: Routes[] = [
+//   {
+//       path     : '',
+//       component: Transac,
+//       resolve  : {
+//           tags: ContactsTagsResolver
+//       },
+//       children : [
+//           {
+//               path     : '',
+//               component: ContactsListComponent,
+//               resolve  : {
+//                   tasks    : ContactsResolver,
+//                   countries: ContactsCountriesResolver
+//               },
+//               children : [
+//                   {
+//                       path         : ':id',
+//                       component    : ContactsDetailsComponent,
+//                       resolve      : {
+//                           task     : ContactsContactResolver,
+//                           countries: ContactsCountriesResolver
+//                       },
+//                       canDeactivate: [CanDeactivateContactsDetails]
+//                   }
+//               ]
+//           }
+//       ]
+//   }
+// ];
 
 @NgModule({
   declarations: [
@@ -27,7 +75,7 @@ const routes: Routes = [
     TransactionFormComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(routes),
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -36,8 +84,7 @@ const routes: Routes = [
     MatSidenavModule
   ],
   exports: [
-    RouterModule,
-    TransactionsComponent
+    RouterModule
   ]
 })
 export class TransactionsModule { }
