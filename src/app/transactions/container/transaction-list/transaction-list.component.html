@@ -88,11 +88,13 @@
 
         <!-- Transaction List -->
         <div class="relative">
-          <ng-container *ngIf="data.length; else noData">
-            <ng-container *ngFor="let transaction of data; let i = index">
+          <ng-container *ngIf="transactions.length; else noData">
+            <ng-container
+              *ngFor="let transaction of transactions; let i = index"
+            >
               <!-- Group -->
               <ng-container
-                *ngIf="i === 0 || transaction.date !== data[i - 1].date"
+                *ngIf="i === 0 || transaction.date !== transactions[i - 1].date"
               >
                 <div
                   class="

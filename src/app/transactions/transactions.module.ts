@@ -9,7 +9,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { TransactionsComponent } from './container/transactions/transactions.component';
-import { TransactionListComponent } from './component/transaction-list/transaction-list.component';
+import { TransactionListComponent } from './container/transaction-list/transaction-list.component';
 import { TransactionDetailComponent } from './component/transaction-detail/transaction-detail.component';
 import { TransactionFormComponent } from './component/transaction-form/transaction-form.component';
 

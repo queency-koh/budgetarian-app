@@ -1,22 +1,28 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from '../../shared/models/transaction.model';
+import { TransactionService } from '../../shared/services/transaction.service';
 
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss']
 })
-export class TransactionListComponent{
+export class TransactionListComponent implements OnInit{
 
   @ViewChild('matDrawer', {static: true}) matDrawer!: MatDrawer;
 
-  @Input()
-  data: Transaction[] = [];
+  transactions: Transaction[] = [];
 
   constructor(private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router,
+              private transactionService : TransactionService
+              ) {}
+
+  ngOnInit(): void {
+    this.transactionService.get().subscribe(response => this.transactions = response);
+  }
 
   createTransaction(type: 'expense' | 'income'): void
   {
