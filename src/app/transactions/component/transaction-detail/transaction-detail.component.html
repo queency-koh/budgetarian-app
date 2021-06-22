@@ -1,6 +1,6 @@
 <app-transaction-form
-  [form]="form"
   [categories]="categories$ | async"
+  [transaction]="transaction$ | async"
   (create)="onSave($event)"
   (cancel)="onCancel()"
 ></app-transaction-form>

@@ -8,6 +8,7 @@ import { Transaction } from '../../shared/models/transaction.model';
 import { CategoryService } from '../../shared/services/category.service';
 import { TransactionService } from '../../shared/services/transaction.service';
 import { TransactionListComponent } from '../../container/transaction-list/transaction-list.component';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-transaction-detail',
@@ -16,9 +17,9 @@ import { TransactionListComponent } from '../../container/transaction-list/trans
 })
 export class TransactionDetailComponent implements OnInit {
 
+  type: string = "";
+  transaction$!: Observable<Transaction>;
   categories$!: Observable<Category[]>;
-
-  form: any
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
@@ -31,17 +32,8 @@ export class TransactionDetailComponent implements OnInit {
 
     this.transactionListComponent.matDrawer.open();
 
-    this.route.paramMap.subscribe(params => {
-      this.form = this.fb.group({
-        id: [Guid.raw()],
-        type: [params.get('type')],
-        date: [new Date()],
-        title: [''],
-        category: [''],
-        amount: ['0.00'],
-        notes: ['']
-      });
-    })
+    this.transaction$ = this.route.params
+        .pipe(switchMap(param => this.transactionService.getById(param.id)));
 
     this.categories$ = this.categoryService.get();
   }

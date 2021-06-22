@@ -23,11 +23,11 @@ const routes: Routes = [
         component: TransactionListComponent,
         children: [
           {
-            path: ':id',
+            path: ':type/new',
             component: TransactionDetailComponent
           },
           {
-            path: ':type',
+            path: ':type/:id',
             component: TransactionDetailComponent
           }
         ]

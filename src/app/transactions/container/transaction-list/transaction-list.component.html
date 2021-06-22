@@ -39,7 +39,7 @@
             <button
               type="button"
               mat-button
-              (click)="createTransaction('expense')"
+              (click)="createTransaction()"
               class="
                 py-2
                 px-4
@@ -58,116 +58,93 @@
               <i class="las la-plus text-lg"></i>
               Add Expense
             </button>
-
-            <!-- Add income button -->
-            <button
-              type="button"
-              mat-button
-              (click)="createTransaction('income')"
-              class="
-                py-2
-                px-4
-                ml-3
-                border border-transparent
-                rounded-md
-                shadow-sm
-                text-sm
-                font-medium
-                text-white
-                bg-indigo-600
-                hover:bg-indigo-700
-                focus:outline-none
-                focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-              "
-            >
-              <i class="las la-plus text-lg"></i>
-              Add Income
-            </button>
           </div>
         </div>
 
         <!-- Transaction List -->
         <div class="relative">
-          <ng-container *ngIf="transactions.length; else noData">
-            <ng-container
-              *ngFor="let transaction of transactions; let i = index"
-            >
-              <!-- Group -->
+          <ng-container *ngIf="transactions$ | async as transactions">
+            <ng-container *ngIf="transactions.length; else noData">
               <ng-container
-                *ngIf="i === 0 || transaction.date !== transactions[i - 1].date"
+                *ngFor="let transaction of transactions; let i = index"
               >
-                <div
-                  class="
-                    z-10
-                    sticky
-                    top-0
-                    border-t border-b border-gray-200
-                    bg-gray-50
-                    px-6
-                    py-1
-                    text-sm
-                    font-medium
-                    text-gray-500
-                    w-full
+                <!-- Group -->
+                <ng-container
+                  *ngIf="
+                    i === 0 ||
+                    transaction.date.split('T')[0] !==
+                      transactions[i - 1].date.split('T')[0]
                   "
                 >
-                  <h3>{{ transaction.date }}</h3>
-                </div>
+                  <div
+                    class="
+                      z-10
+                      sticky
+                      top-0
+                      border-t border-b border-gray-200
+                      bg-gray-50
+                      px-6
+                      py-1
+                      text-sm
+                      font-medium
+                      text-gray-500
+                      w-full
+                    "
+                  >
+                    <h3>{{ transaction.date | date: "MMMM d, y" }}</h3>
+                  </div>
+                </ng-container>
+
+                <a [routerLink]="['/expense', transaction.id]">
+                  <div
+                    class="
+                      z-20
+                      flex
+                      items-center
+                      px-6
+                      py-4
+                      md:px-8
+                      cursor-pointer
+                      hover:bg-hover hover:bg-gray-50
+                      border-b
+                    "
+                  >
+                    <div class="flex flex-col flex-1">
+                      <div class="font-medium leading-5 truncate">
+                        {{ transaction.title }}
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        {{ transaction.category }}
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center justify-end h-full font-semibold"
+                    >
+                      <span *ngIf="transaction.type === 'expense'">-</span
+                      >{{ transaction.amount | currency: "₱" }}
+                    </div>
+                  </div>
+                </a>
               </ng-container>
+            </ng-container>
+
+            <!-- No Data -->
+            <ng-template #noData>
               <div
                 class="
-                  z-20
-                  flex
-                  items-center
-                  px-6
-                  py-4
-                  md:px-8
-                  cursor-pointer
-                  hover:bg-hover hover:bg-gray-50
-                  border-b
+                  p-8
+                  sm:p-16
+                  border-t
+                  text-4xl
+                  font-semibold
+                  tracking-tight
+                  text-center
                 "
               >
-                <div class="flex flex-col flex-1">
-                  <div class="font-medium leading-5 truncate">
-                    {{ transaction.title }}
-                  </div>
-                  <div class="text-sm text-gray-500">
-                    {{ transaction.category }}
-                  </div>
-                </div>
-                <div
-                  class="
-                    flex
-                    items-center
-                    justify-end
-                    w-full
-                    h-full
-                    font-semibold
-                  "
-                >
-                  <span *ngIf="transaction.type === 'expense'">-</span
-                  >{{ transaction.amount | currency: "₱" }}
-                </div>
+                There are no transactions!
               </div>
-            </ng-container>
+            </ng-template>
           </ng-container>
-
-          <!-- No Data -->
-          <ng-template #noData>
-            <div
-              class="
-                p-8
-                sm:p-16
-                border-t
-                text-4xl
-                font-semibold
-                tracking-tight
-                text-center
-              "
-            >
-              There are no transactions!
-            </div>
-          </ng-template>
         </div>
       </div>
     </mat-drawer-content>

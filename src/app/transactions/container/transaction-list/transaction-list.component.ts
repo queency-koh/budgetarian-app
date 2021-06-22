@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Transaction } from '../../shared/models/transaction.model';
 import { TransactionService } from '../../shared/services/transaction.service';
 
@@ -9,11 +10,11 @@ import { TransactionService } from '../../shared/services/transaction.service';
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss']
 })
-export class TransactionListComponent implements OnInit{
+export class TransactionListComponent implements OnInit {
 
   @ViewChild('matDrawer', {static: true}) matDrawer!: MatDrawer;
 
-  transactions: Transaction[] = [];
+  transactions$!: Observable<Transaction[]>;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -21,12 +22,12 @@ export class TransactionListComponent implements OnInit{
               ) {}
 
   ngOnInit(): void {
-    this.transactionService.get().subscribe(response => this.transactions = response);
+    this.transactions$ = this.transactionService.get();
   }
 
-  createTransaction(type: 'expense' | 'income'): void
+  createTransaction(): void
   {
     // Go to transaction
-    this.router.navigate(['/', type], {relativeTo: this.route});
+    this.router.navigate(['/expense/new'], {relativeTo: this.route});
   }
 }
