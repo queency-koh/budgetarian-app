@@ -82,6 +82,7 @@
                 p-2
               "
             >
+              <option></option>
               <option *ngFor="let category of categories">
                 {{ category.name }}
               </option>
@@ -188,7 +189,7 @@
         <!-- Delete -->
         <button>Delete</button>
         <!-- Cancel -->
-        <button class="ml-auto pr-2">Cancel</button>
+        <button class="ml-auto pr-2" (click)="onCancel()">Cancel</button>
         <!-- Save -->
         <button
           type="submit"

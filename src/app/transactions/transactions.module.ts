@@ -9,15 +9,63 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { TransactionsComponent } from './container/transactions/transactions.component';
-import { TransactionListComponent } from './component/transaction-list/transaction-list.component';
+import { TransactionListComponent } from './container/transaction-list/transaction-list.component';
 import { TransactionDetailComponent } from './component/transaction-detail/transaction-detail.component';
 import { TransactionFormComponent } from './component/transaction-form/transaction-form.component';
 
 const routes: Routes = [
-  { path: '', component: TransactionListComponent },
-  { path: ':id', component: TransactionDetailComponent },
-  { path: ':type', component: TransactionDetailComponent }
+  {
+    path: '',
+    component: TransactionsComponent,
+    children : [
+      {
+        path: '',
+        component: TransactionListComponent,
+        children: [
+          {
+            path: ':type/new',
+            component: TransactionDetailComponent
+          },
+          {
+            path: ':type/:id',
+            component: TransactionDetailComponent
+          }
+        ]
+      }
+    ]
+  }
 ];
+
+// const routes: Routes[] = [
+//   {
+//       path     : '',
+//       component: Transac,
+//       resolve  : {
+//           tags: ContactsTagsResolver
+//       },
+//       children : [
+//           {
+//               path     : '',
+//               component: ContactsListComponent,
+//               resolve  : {
+//                   tasks    : ContactsResolver,
+//                   countries: ContactsCountriesResolver
+//               },
+//               children : [
+//                   {
+//                       path         : ':id',
+//                       component    : ContactsDetailsComponent,
+//                       resolve      : {
+//                           task     : ContactsContactResolver,
+//                           countries: ContactsCountriesResolver
+//                       },
+//                       canDeactivate: [CanDeactivateContactsDetails]
+//                   }
+//               ]
+//           }
+//       ]
+//   }
+// ];
 
 @NgModule({
   declarations: [
@@ -27,7 +75,7 @@ const routes: Routes = [
     TransactionFormComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(routes),
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -36,8 +84,7 @@ const routes: Routes = [
     MatSidenavModule
   ],
   exports: [
-    RouterModule,
-    TransactionsComponent
+    RouterModule
   ]
 })
 export class TransactionsModule { }
