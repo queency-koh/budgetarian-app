@@ -36,37 +36,6 @@ const routes: Routes = [
   }
 ];
 
-// const routes: Routes[] = [
-//   {
-//       path     : '',
-//       component: Transac,
-//       resolve  : {
-//           tags: ContactsTagsResolver
-//       },
-//       children : [
-//           {
-//               path     : '',
-//               component: ContactsListComponent,
-//               resolve  : {
-//                   tasks    : ContactsResolver,
-//                   countries: ContactsCountriesResolver
-//               },
-//               children : [
-//                   {
-//                       path         : ':id',
-//                       component    : ContactsDetailsComponent,
-//                       resolve      : {
-//                           task     : ContactsContactResolver,
-//                           countries: ContactsCountriesResolver
-//                       },
-//                       canDeactivate: [CanDeactivateContactsDetails]
-//                   }
-//               ]
-//           }
-//       ]
-//   }
-// ];
-
 @NgModule({
   declarations: [
     TransactionsComponent,
@@ -83,8 +52,6 @@ const routes: Routes = [
     MatNativeDateModule,
     MatSidenavModule
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: []
 })
 export class TransactionsModule { }
