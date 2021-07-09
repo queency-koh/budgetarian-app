@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder } from '@angular/forms';
 import { Guid } from 'guid-typescript';
 import { Category } from '../../shared/models/category.model';
-import { Transaction } from '../../shared/models/transaction.model';
+import { Transaction } from '../../../shared/models/transaction.model';
 
 @Component({
   selector: 'app-transaction-form',
