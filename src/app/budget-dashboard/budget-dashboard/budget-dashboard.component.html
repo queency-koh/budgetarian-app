@@ -1,1 +1,19 @@
-<app-budget-status-card></app-budget-status-card>
+<div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  <app-budget-status-card
+    [amount]="115000"
+    [icon]="'las la-bell la-2x'"
+    [title]="'Total Income'"
+  ></app-budget-status-card>
+
+  <app-budget-status-card
+    [amount]="115000"
+    [icon]="'las la-bell la-2x'"
+    [title]="'Total Expenses'"
+  ></app-budget-status-card>
+
+  <app-budget-status-card
+    [amount]="115000"
+    [icon]="'las la-bell la-2x'"
+    [title]="'Total Savings'"
+  ></app-budget-status-card>
+</div>

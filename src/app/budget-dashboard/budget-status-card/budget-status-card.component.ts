@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-budget-status-card',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./budget-status-card.component.scss']
 })
 export class BudgetStatusCardComponent implements OnInit {
+
+  @Input() title: string = '';
+  @Input() icon: string = '';
+  @Input() amount: number = 0;
+  @Output() view: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
