@@ -1,19 +1,21 @@
 <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
   <app-budget-status-card
     [amount]="income"
-    [icon]="'las la-bell la-2x'"
+    [icon]="'las la-wallet la-2x'"
+    [color]="'green'"
     [title]="'Total Income'"
   ></app-budget-status-card>
 
   <app-budget-status-card
     [amount]="(expenses$ | async)!"
-    [icon]="'las la-bell la-2x'"
+    [icon]="'las la-credit-card la-2x'"
+    [color]="'red'"
     [title]="'Total Expenses'"
   ></app-budget-status-card>
 
   <app-budget-status-card
     [amount]="savings"
-    [icon]="'las la-bell la-2x'"
+    [icon]="'las la-piggy-bank la-2x'"
     [title]="'Total Savings'"
   ></app-budget-status-card>
 </div>

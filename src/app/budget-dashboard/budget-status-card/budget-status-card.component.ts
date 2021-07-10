@@ -10,6 +10,7 @@ export class BudgetStatusCardComponent implements OnInit {
   @Input() title: string = '';
   @Input() icon: string = '';
   @Input() amount: number = 0;
+  @Input() color: string = 'indigo';
   @Output() view: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
