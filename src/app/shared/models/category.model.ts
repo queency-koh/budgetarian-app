@@ -1,5 +1,7 @@
 export interface Category
 {
     id?: string;
-    name?: string;
+    name: string;
+    budget: number;
+    expenses: number;
 }
