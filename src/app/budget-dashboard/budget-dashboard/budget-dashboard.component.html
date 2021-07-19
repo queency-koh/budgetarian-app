@@ -1,5 +1,6 @@
-<div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 p-4">
+<div class="flex space-x-4 w-full p-2">
   <app-budget-status-card
+    class="flex-grow"
     [amount]="income"
     [icon]="'las la-wallet la-2x'"
     [color]="'green'"
@@ -7,6 +8,7 @@
   ></app-budget-status-card>
 
   <app-budget-status-card
+    class="flex-grow"
     [amount]="(expenses$ | async)!"
     [icon]="'las la-credit-card la-2x'"
     [color]="'red'"
@@ -14,12 +16,14 @@
   ></app-budget-status-card>
 
   <app-budget-status-card
+    class="flex-grow"
     [amount]="savings"
     [icon]="'las la-piggy-bank la-2x'"
     [title]="'Total Savings'"
   ></app-budget-status-card>
 </div>
 
-<div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 p-4">
+<div class="flex space-x-4 w-full p-2">
+  <app-recent-transaction class="flex-auto"></app-recent-transaction>
   <app-budget-summary></app-budget-summary>
 </div>
