@@ -13,7 +13,6 @@ export class BudgetDashboardComponent implements OnInit {
   savings: number = 0;
   income: number = 115000;
   expenses$!: Observable<number>;
-  transactions: Transaction[] = new Array<Transaction>();
 
   constructor(private transactionService: TransactionService) { }
 
