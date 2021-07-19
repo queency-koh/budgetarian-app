@@ -24,6 +24,11 @@
 </div>
 
 <div class="flex space-x-4 w-full p-2">
-  <app-recent-transaction class="flex-auto"></app-recent-transaction>
-  <app-budget-summary></app-budget-summary>
+  <ng-container *ngIf="transactions$ | async as transactions">
+    <app-recent-transaction
+      class="flex-auto"
+      [transactions]="transactions"
+    ></app-recent-transaction>
+  </ng-container>
+  <app-budget-summary [categories]="categories"></app-budget-summary>
 </div>
