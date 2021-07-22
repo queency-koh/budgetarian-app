@@ -1,1 +1,34 @@
-<p>budget-dashboard works!</p>
+<div class="flex space-x-4 w-full p-2">
+  <app-budget-status-card
+    class="flex-grow"
+    [amount]="income"
+    [icon]="'las la-wallet la-2x'"
+    [color]="'green'"
+    [title]="'Total Income'"
+  ></app-budget-status-card>
+
+  <app-budget-status-card
+    class="flex-grow"
+    [amount]="(expenses$ | async)!"
+    [icon]="'las la-credit-card la-2x'"
+    [color]="'red'"
+    [title]="'Total Expenses'"
+  ></app-budget-status-card>
+
+  <app-budget-status-card
+    class="flex-grow"
+    [amount]="savings"
+    [icon]="'las la-piggy-bank la-2x'"
+    [title]="'Total Savings'"
+  ></app-budget-status-card>
+</div>
+
+<div class="flex space-x-4 w-full p-2">
+  <ng-container *ngIf="transactions$ | async as transactions">
+    <app-recent-transaction
+      class="flex-auto"
+      [transactions]="transactions"
+    ></app-recent-transaction>
+  </ng-container>
+  <app-budget-summary [categories]="categories"></app-budget-summary>
+</div>

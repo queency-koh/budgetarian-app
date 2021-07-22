@@ -2,8 +2,8 @@ import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular
 import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Transaction } from '../../shared/models/transaction.model';
-import { TransactionService } from '../../shared/services/transaction.service';
+import { Transaction } from '../../../shared/models/transaction.model';
+import { TransactionService } from '../../../shared/services/transaction.service';
 
 @Component({
   selector: 'app-transaction-list',

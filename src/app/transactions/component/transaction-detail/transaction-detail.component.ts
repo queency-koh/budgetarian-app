@@ -3,10 +3,10 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs/internal/Observable';
-import { Category } from '../../shared/models/category.model';
-import { Transaction } from '../../shared/models/transaction.model';
-import { CategoryService } from '../../shared/services/category.service';
-import { TransactionService } from '../../shared/services/transaction.service';
+import { Category } from '../../../shared/models/category.model';
+import { Transaction } from '../../../shared/models/transaction.model';
+import { CategoryService } from '../../../shared/services/category.service';
+import { TransactionService } from '../../../shared/services/transaction.service';
 import { TransactionListComponent } from '../../container/transaction-list/transaction-list.component';
 import { switchMap } from 'rxjs/operators';
 
