@@ -7,7 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AuthFormComponent implements OnInit {
 
   @Output()
-  submit = new EventEmitter();
+  submitted = new EventEmitter();
 
   form = this.fb.group({
     email: ['', Validators.email],
@@ -33,7 +33,7 @@ export class AuthFormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.submit.emit(this.form.value);
+      this.submitted.emit(this.form);
     }
   }
 }
