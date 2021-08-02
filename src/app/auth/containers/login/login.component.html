@@ -32,4 +32,7 @@
   >
     Sign in
   </button>
+  <div class="error text-sm text-red-400 font-semibold py-2" *ngIf="error">
+    {{ error }}
+  </div>
 </app-auth-form>
