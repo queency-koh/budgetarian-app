@@ -10,10 +10,12 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { BudgetDashboardModule } from './budget-dashboard/budget-dashboard.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
