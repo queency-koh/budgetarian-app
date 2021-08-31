@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    canActivate: [AuthGuard],
+    loadChildren: async () => (await import('./auth/auth.module')).AuthModule
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./budget-dashboard/budget-dashboard.module').then(m => m.BudgetDashboardModule)
+    canActivate: [AuthGuard],
+    loadChildren: async () => (await import('./budget-dashboard/budget-dashboard.module')).BudgetDashboardModule
   },
   {
     path: 'transactions',
-    loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule)
+    canActivate: [AuthGuard],
+    loadChildren: async () => (await import('./transactions/transactions.module')).TransactionsModule
   }
 ];
 

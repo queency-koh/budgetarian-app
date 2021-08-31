@@ -24,6 +24,10 @@ import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent,
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
