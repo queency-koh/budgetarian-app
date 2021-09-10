@@ -8,7 +8,7 @@
 5. How to [install line awesome](https://dev.to/queencykoh/setting-up-line-awesome-in-angular-1i4l)
 6. How to [setup fake REST API with JSON Server](https://dev.to/queencykoh/setting-up-fake-rest-api-with-json-server-in-angular-2na2)
 
-{
+`{
   "transactions": [
     {
       "id": "78988b03-fae4-f609-d439-296fabad5894",
@@ -70,4 +70,4 @@
       "budget": 5000
     }
   ]
-}
+}`
