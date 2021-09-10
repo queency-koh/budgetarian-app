@@ -31,7 +31,7 @@
         "budget": 1000
       }
     ]
-    }```
+    }`
 3. Run `json-server --watch db.json`
 
 
