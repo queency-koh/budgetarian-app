@@ -12,26 +12,28 @@
 
 1. In the root directory, create `db.json` file
 2. Add the followning json data
-    ```{
-    "transactions": [
-      {
-        "id": "78988b03-fae4-f609-d439-296fabad5894",
-        "type": "expense",
-        "date": "2021-09-10T16:00:00.000Z",
-        "title": "Dine Out",
-        "category": "Lifestyle",
-        "amount": "10100",
-        "notes": ""
-      }
-    ],
-    "categories": [
-      {
-        "id": 1,
-        "name": "Lifestyle",
-        "budget": 1000
-      }
-    ]
+    ```
+    {
+      "transactions": [
+        {
+          "id": "78988b03-fae4-f609-d439-296fabad5894",
+          "type": "expense",
+          "date": "2021-09-10T16:00:00.000Z",
+          "title": "Dine Out",
+          "category": "Lifestyle",
+          "amount": "10100",
+          "notes": ""
+        }
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Lifestyle",
+          "budget": 1000
+        }
+      ]
     }
+    ```
 3. Run `json-server --watch db.json`
 
 
